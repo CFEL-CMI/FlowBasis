@@ -1,44 +1,27 @@
-# CMI Python-project template
+# FlowBasis: Augmenting basis sets by normalizing flows
 
-Template for new CMI Python-software projects.
+The repository contains python implementations of variational solutions to perturbed quantum harmonic oscillator problems. Solution methodology is based on the use of Hermite functions, and augmented Hermite functions, where Hermite functions are composed with normalizing flows [1]. The provided codes reproduces results in the below cited reference.
 
-This includes the basic setup of a Python project with library, scripts, pytest testing, and [sphinx
-documentation](https://cmi-python-project-template.readthedocs.io).
+## Dependencies
 
+Tba.
 
 ## Installation
 
-Standard setuptool installation, run
+To install the package run:
 ```
 python setup.py install
 ```
-or advanced versions using `develop`, `--user`, etc. – see the
-[documentation](https://cmi-python-project-template.readthedocs.io) for more details.
-
-
-## Documentation
-
-See this very [sphinx-generated
-documentation](https://cmi-python-project-template.readthedocs.io) for further
-details; it can be produced by running
+or in a developer-mode, e.g.:
 ```
-python setup.py build_sphinx
+python setup.py develop --user
 ```
 
-See also the [license](./LICENSE.md).
+## Usage
 
-## Testing
-
-Standard tests are implemented in `tests/`, run by executing
-```
-pytest
-```
+In HOs.py the Harmonic oscillator problem and the variational methodology to solve it are defined. flows.py contains the normalizing flows that are used to augment standard basis sets. Basis.py contains basis sets that can be used to discretize Schrödinger equations. quadratures.py defines quadrature rules.   
 
 
+## References
 
-<!-- Put Emacs local variables into HTML comment
-Local Variables:
-coding: utf-8
-fill-column: 100
-End:
--->
+[1] Y. Saleh, A. Iske, J. Küpper, A. Yachmenev, *Augmenting basis sets by normalizing flows*, [arXiv:tba.tba [math.NA]]( tba) (2022).
