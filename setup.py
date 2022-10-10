@@ -9,13 +9,7 @@ copyright = 'Copyright (C) 2022 Yahya Saleh <yahya.saleh@cfel.de> and Jochen K√º
 name = "FlowBasis"
 version = "0.1.dev0"
 release = version
-long_description = """FlowBasis
-
-This is the installation and general build file of the CMI FlowBasis code. The code demonstrates how to augmented basis sets and use them to compute eigenpairs of Schr√dinger equations.
-
-Author:    Yahya Saleh <yahya.saleh@cfel.de>
-Current maintainer: Yahya Saleh <yahya.saleh@cfel.de>
-"""
+long_description = "This is the installation and general build file of the CMI FlowBasis code. The code demonstrates how to augmented basis sets and use them to compute eigenpairs of Schroedinger equations. Author: Yahya Saleh <yahya.saleh@cfel.de>. Current maintainer: Yahya Saleh <yahya.saleh@cfel.de>"
 
 classifiers = [
     'Development Status :: 3 - Alpha',
@@ -37,11 +31,9 @@ classifiers = [
     'Topic :: Scientific/Engineering :: Artificial Intelligence',
 ]
 
-with open('requirements.txt') as of:
-    install_requires = of.read().splitlines()
 
 setup(name=name,
-      python_requires     = '>=3.7',
+      python_requires     = '>=3.6',
       author              = "Yahya Saleh and the CFEL-CMI group",
       author_email        = "yahya.saleh@cfel.de",
       maintainer          = "Yahya Saleh and the CFEL-CMI group",
@@ -52,6 +44,7 @@ setup(name=name,
       long_description    = long_description,
       license             = "GPL",
       packages            = ['flowbasis', 'examples'],
+      #install_requires    = install_requires, 
       command_options={
           'build_sphinx': {
               'project': ('setup.py', name),
