@@ -4,7 +4,13 @@ The repository contains python implementations of variational solutions to pertu
 
 ## Dependencies
 
-Tba.
+The codes were tested on Python 3.6.8. We recommend the use of a virtual
+environment. To install all necessary packages run:
+
+```
+pip install -r requirements.txt
+```
+
 
 ## Installation
 
@@ -19,7 +25,7 @@ python setup.py develop --user
 
 ## Usage
 
-In HOs.py the Harmonic oscillator problem and the variational methodology to solve it are defined. flows.py contains the normalizing flows that are used to augment standard basis sets. Basis.py contains basis sets that can be used to discretize Schrödinger equations. quadratures.py defines quadrature rules.   
+In examples/HOs.py the Harmonic oscillator problem and the variational methodology to solve it are defined. flowbasis/flows.py contains the normalizing flows that are used to augment standard basis sets. flowbasis/Basis.py contains basis sets that can be used to discretize Schrödinger equations. flowbasis/quadratures.py defines quadrature rules.   
 
 
 ## References
