@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8; fill-column: 100; truncate-lines: t -*-
 #
-# This file is part of Active-Learning-of-PES python package
+# This file is part of FlowBasis python package
 #
 # Copyright (C) 2018,2020 CFEL Controlled Molecule Imaging group
 #
