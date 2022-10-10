@@ -18,7 +18,7 @@
 # <http://www.gnu.org/licenses/>.
 
 """
-An implementation of of linear and residual normalizing flows."""
+An implementation of linear and residual normalizing flows."""
 
 import numpy as np
 import functools
