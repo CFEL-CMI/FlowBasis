@@ -3,34 +3,55 @@
 #
 # Copyright (C) 2020 Jochen K체pper <jochen.kuepper@cfel.de>
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
-copyright = 'Copyright (C) 2020 Jochen K체pper <jochen.kuepper@cfel.de>'
-name = "CMI Python-project template"
-version = "0.2.dev0"
+copyright = 'Copyright (C) 2022 Yahya Saleh <yahya.saleh@cfel.de> and Jochen K체pper <jochen.kuepper@cfel.de>'
+name = "FlowBasis"
+version = "0.1.dev0"
 release = version
-long_description = """CMI Python template
+long_description = """FlowBasis
 
-This is the installation and general build file of the CMI Python project template.
+This is the installation and general build file of the CMI FlowBasis code. The code demonstrates how to augmented basis sets and use them to compute eigenpairs of Schr홥inger equations.
 
-Original author:    Jochen K체pper <jochen.kuepper@cfel.de>
-Current maintainer: Jochen K체pper <jochen.kuepper@cfel.de>
+Author:    Yahya Saleh <yahya.saleh@cfel.de>
+Current maintainer: Yahya Saleh <yahya.saleh@cfel.de>
 """
 
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+    'Operating System :: MacOS :: MacOS X',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: Unix',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Topic :: Scientific/Engineering',
+    'Topic :: Scientific/Engineering :: Physics',
+    'Topic :: Scientific/Engineering :: Artificial Intelligence',
+]
+
+with open('requirements.txt') as of:
+    install_requires = of.read().splitlines()
 
 setup(name=name,
-      python_requires     = '>=3.6',
-      author              = "Jochen K체pper and the CFEL-CMI group",
-      author_email        = "jochen.kuepper@cfel.de",
-      maintainer          = "Jochen K체pper and the CFEL-CMI group",
-      maintainer_email    = "jochen.kuepper@cfel.de",
+      python_requires     = '>=3.7',
+      author              = "Yahya Saleh and the CFEL-CMI group",
+      author_email        = "yahya.saleh@cfel.de",
+      maintainer          = "Yahya Saleh and the CFEL-CMI group",
+      maintainer_email    = "yahya.saleh@cfel.de",
       url                 = "https://github.com/CFEL-CMI/CMI-Python-project-template",
-      description         = "CMI Python-software template",
+      description         = "CMI FlowBasis",
       version             = version,
       long_description    = long_description,
       license             = "GPL",
       packages            = ['flowbasis', 'scripts'],
-      #scripts             = ['scripts/cmitemplate_calc'],
       command_options={
           'build_sphinx': {
               'project': ('setup.py', name),
