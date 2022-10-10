@@ -51,7 +51,7 @@ setup(name=name,
       version             = version,
       long_description    = long_description,
       license             = "GPL",
-      packages            = ['flowbasis', 'scripts'],
+      packages            = ['flowbasis', 'examples'],
       command_options={
           'build_sphinx': {
               'project': ('setup.py', name),
