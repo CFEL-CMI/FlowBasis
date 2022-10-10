@@ -1,0 +1,7 @@
+matplotlib==3.4.1
+numpy>=1.8.2
+jax==0.2.17
+jaxlib==0.1.69+cuda102
+h5py==2.10.0
+numpy==1.19.5
+flax==0.3.5
