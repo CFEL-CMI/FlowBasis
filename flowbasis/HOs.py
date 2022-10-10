@@ -1,3 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8; fill-column: 100; truncate-lines: t -*-
+#
+# This file is part of Active-Learning-of-PES python package
+#
+# Copyright (C) 2018,2020 CFEL Controlled Molecule Imaging group
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+#
+# If you use this program for scientific work, you should correctly reference it; see the LICENSE.md file for details.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program. If not, see
+# <http://www.gnu.org/licenses/>.
+
+"""
+Script to train normalizing flows for optimizing basis sets to model eigenpairs of petrubed quantum harmonic oscillators."""
+
 import jax.numpy as jnp
 import numpy as np
 import quadratures, basis, flows
@@ -83,7 +105,7 @@ def solve():
             print(f"ZPE: {enr[0]}, energy differences: {enr[:20]-enr[0]}")
             energies.append(enr)
             vectors.append(vec)
-# test if the neural network is invertible
+        # test if the neural network is invertible
         indices = np.random.randint(0, x.shape[0], size=10) 
         y = QF.apply(params, QF.apply(params, jnp.array(x)[indices,:]), mode="backward")
         inversion_error = jnp.abs(y-x[indices,:]).sum()/indices.shape[0]	
