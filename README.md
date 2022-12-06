@@ -30,4 +30,4 @@ In examples/HOs.py the Harmonic oscillator problem and the variational methodolo
 
 ## References
 
-[1] Y. Saleh, A. Iske, A. Yachmenev, J. Küpper, *Augmenting basis sets by normalizing flows*, [arXiv:tba.tba [math.NA]]( tba) (2022).
+[1] Y. Saleh, A. Iske, A. Yachmenev, J. Küpper, *Augmenting basis sets by normalizing flows*, [arXiv:2212.01383  [math.NA]]( https://arxiv.org/abs/2212.01383) (2022).
