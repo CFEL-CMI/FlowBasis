@@ -15,7 +15,7 @@ msgpack==1.0.4
 numpy==1.19.5
 opt-einsum==3.3.0
 optax==0.0.91
-Pillow==8.4.0
+Pillow==9.3.0
 pyparsing==3.0.9
 python-dateutil==2.8.2
 scipy>=1.10.0
