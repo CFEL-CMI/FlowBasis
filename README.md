@@ -4,7 +4,7 @@ The repository contains python implementations of variational solutions to pertu
 
 ## Dependencies
 
-The codes were tested on Python 3.6.8. We recommend the use of a virtual
+The codes were tested on Python 3.9.15. We recommend the use of a virtual
 environment. To install all necessary packages run:
 
 ```
