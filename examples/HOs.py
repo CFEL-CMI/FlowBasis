@@ -22,11 +22,11 @@ Script to train normalizing flows for optimizing basis sets to model eigenpairs 
 
 import jax.numpy as jnp
 import numpy as np
-import quadratures, basis, flows
+from flowbasis import quadratures, basis, flows
 from jax import numpy as jnp, random
 import sys
 import jax 
-from flax import optim
+import optax 
 from jax.config import config 
 import h5py as hp 
 
@@ -72,12 +72,9 @@ def solve():
     global QF, psi, dpsi, weights
     # 1D quadratures
     x, weights = quadratures.QuadratureGenerator(nquads, quads, wthr=1e-34) 
-    #QF = flows.LinearFlow(jnp.asarray([0]*dim).reshape(1,-1), jnp.asarray([1]*dim).reshape(1,-1), 0) 
     shift_QF = (jnp.amax(x, axis=0)+jnp.amin(x, axis=0))/2
     scale_QF = jnp.amax(x-shift_QF, axis=0)/0.99
-    #QF = flows.LinearInvBlock(jnp.asarray([0]*dim).reshape(1,-1), jnp.asarray([1]*dim).reshape(1,-1), 0, NF, scale_QF, shift_QF, jnp.arange(dim))
-    #QF = flows.mIResNet(NF, scale_QF, shift_QF)
-    QF = flows.Unity()
+    QF = flows.mIResNet(NF, scale_QF, shift_QF)
     key1, key2, key3 = random.split(random.PRNGKey(3),3)
     x_dummy = random.uniform(key1, minval=-1, maxval=1, shape=(2,x.shape[1]))
     params = QF.init(key2, x_dummy)
@@ -86,7 +83,8 @@ def solve():
     # Hamiltonian eigenvalues and eigenvectors
     loss = sum_es(params, x)
     loss_grad_fn = jax.value_and_grad(loss, has_aux=True)
-    optimizer = optimizer_def.create(params)
+    optx = optax.adam(learning_rate=lr)
+    opt_state = optx.init(params)
     e = 0
     energies, vectors, losses = [], [], []
     while e<nepochs+1:
@@ -97,8 +95,8 @@ def solve():
         else:
             compute_matrix = False
         (loss_val, h), grad_val = loss_grad_fn(params)
-        optimizer = optimizer.apply_gradient(grad_val)
-        params = optimizer.target
+        updates, opt_state = optx.update(grad_val, opt_state)
+        params = optax.apply_updates(params, updates)
         print(f"epoch: {e}, loss: {loss_val}")
         if compute_matrix:
             enr, vec = jnp.linalg.eigh(h)
@@ -131,31 +129,10 @@ if __name__ == '__main__':
     w = [1]*dim # quantum numbers for direct product basis
     nmax_local = [30]*dim 
     # define global parameters of training 
-    global nepochs, lr, optimizer_def, NF
-    nepochs = 0 # number of training epochs 
+    global nepochs, lr, NF
+    nepochs = 100 # number of training epochs 
     lr = 0.001 # learning rate 
-    NF = [[128,dim]]
-    optimizer_def = optim.Adam(learning_rate=lr)
-    
-    outputfile = "1D_standard_calcs.h5" 
-    for i in range(30, 60):
-        #nmax_local = [i]*dim #size of the basis 
-        nmax_global = i
-        setter()
-        if i == 1: mode = 'w'
-        else: mode = 'a'
-        energies, vectors, losses = solve()
-        with hp.File("simulations/"+outputfile, mode) as of:
-            if mode == 'w': # only save these parameters when we create the outputfile
-                # saving training parameters
-                of.attrs["Pontetial"] = "1/2 x^0.5 + 1/4 x^0.25"
-                of.attrs["Learning rate"] = lr
-                of.attrs["NF shape"] = str(NF)
-                of.attrs["Number of epochs"] = nepochs 
-                of.attrs["dimension of the problem"] = dim
-                of.attrs["number of quadrature points per dim"] = nquads    	 
-            else: pass       
-            gp = of.create_group("nmax_local="+str(i))
-            gp.create_dataset("energies", data=energies)
-            gp.create_dataset("vectors", data=vectors)
-            gp.create_dataset("loss", data=losses)
+    NF = [[24,dim]]
+    nmax_global = 3 
+    setter()
+    energies, vecotrs, losses = solve()
