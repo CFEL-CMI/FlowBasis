@@ -28,6 +28,8 @@ python setup.py develop --user
 In examples/HOs.py the Harmonic oscillator problem and the variational methodology to solve it are defined. flowbasis/flows.py contains the normalizing flows that are used to augment standard basis sets. flowbasis/Basis.py contains basis sets that can be used to discretize Schrödinger equations. flowbasis/quadratures.py defines quadrature rules.   
 
 
-## References
+## Citation
+
+If you use the code please cite:
 
 [1] Y. Saleh, A. Iske, A. Yachmenev, J. Küpper, *Augmenting basis sets by normalizing flows*, [Proc. Appl. Math. Mech. 23 (1) (2023), e202200239]( https://onlinelibrary.wiley.com/doi/full/10.1002/pamm.202200239) (2022).
