@@ -1,6 +1,6 @@
 # FlowBasis: Augmenting basis sets by normalizing flows
 
-The repository contains python implementations of variational solutions to perturbed quantum harmonic oscillator problems. Solution methodology is based on the use of Hermite functions, and augmented Hermite functions, where Hermite functions are composed with normalizing flows [1]. The provided codes reproduces results in the below cited reference.
+The repository contains python implementations of variational solutions to perturbed quantum harmonic oscillator problems. Solution methodology is based on the use of Hermite functions, and augmented Hermite functions, where Hermite functions are composed with normalizing flows [1]. The provided codes reproduce results in the below cited reference.
 
 ## Dependencies
 
